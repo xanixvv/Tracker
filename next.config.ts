@@ -1,10 +1,20 @@
 import withPWA from "next-pwa";
 
-const nextConfig = withPWA({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-});
+const nextConfig = {
+  reactStrictMode: true,
 
-export default nextConfig;
+  // 🔥 THIS FIXES YOUR ERROR
+  turbopack: {},
+
+  images: {
+    domains: [],
+  },
+};
+
+export default withPWA({
+  ...nextConfig,
+  pwa: {
+    dest: "public",
+    disable: process.env.NODE_ENV === "development",
+  },
+});
